@@ -1,12 +1,23 @@
 import express from 'express';
-
+import mongoose from 'mongoose';
 const app = express();
 export const port = process.env['port'] || 8080;
 
-console.log(`starting app, listening on port ${port}`);
-app.get('/', (_req, res) => {
-    res.send('hello world');
-});
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
-app.listen(port);
-export default app;
+mongoose.connect(
+    'mongodb://localhost:27017/medium',
+    {
+        useCreateIndex: true,
+        useUnifiedTopology: true,
+        useNewUrlParser: true,
+    },
+    () => {
+        console.log('connected to the mangodb databse');
+    },
+);
+
+app.listen(port, () => {
+    console.log(`starting app, listening on port ${port}`);
+});
