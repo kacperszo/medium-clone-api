@@ -14,7 +14,7 @@ mongoose.connect(
         useNewUrlParser: true,
     },
     () => {
-        console.log('connected to the mangodb databse');
+        console.log('connected to the mangodb database');
     },
 );
 
